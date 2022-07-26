@@ -1,14 +1,14 @@
 require chkconfig_1.3.58.bb
 
-SUMMARY = "${SUMMARY_chkconfig-alternatives}"
-DESCRIPTION = "${DESCRIPTION_chkconfig-alternatives}"
+SUMMARY = "${SUMMARY:chkconfig-alternatives}"
+DESCRIPTION = "${DESCRIPTION:chkconfig-alternatives}"
 DEPENDS = ""
 PROVIDES += "virtual/update-alternatives-native"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 # The sysroot branch is 1.3.59 + some git commits from master + --sysroot
 # support for alternatives.
-SRC_URI = "git://github.com/kergoth/chkconfig;branch=sysroot"
+SRC_URI = "git://github.com/kergoth/chkconfig;branch=sysroot;protocol=https"
 S = "${WORKDIR}/git"
 UPSTREAM_CHECK_GITTAGREGEX = "chkconfig-(?P<pver>(\d+(\.\d+)+))"
 
@@ -39,6 +39,6 @@ do_install () {
 	ln -s alternatives.8 ${D}${mandir}/man8/update-alternatives.8
 }
 
-do_install_append_linuxstdbase() {
+do_install:append:linuxstdbase() {
 	rm -rf ${D}${libdir}/lsb
 }

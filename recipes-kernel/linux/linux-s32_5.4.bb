@@ -10,5 +10,5 @@ SRC_URI += " \
 "
 
 # Enable 100MB BAR support for S32G and R
-SRC_URI_append_gen1 += " ${@bb.utils.contains('DISTRO_FEATURES', 'pcie-large-bars', \
+SRC_URI:append:gen1 = " ${@bb.utils.contains('DISTRO_FEATURES', 'pcie-large-bars', \
 	'file://0001-s32gen1-Increase-reserved-mem-and-EP-BAR-2-to-100MB-${PV}.patch', '', d)}"

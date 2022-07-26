@@ -8,9 +8,9 @@ RECIPE_NO_UPDATE_REASON = "Version 1.5 requires selinux"
 
 HOMEPAGE = "https://github.com/fedora-sysv"
 
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=5574c6965ae5f583e55880e397fbb018"
-FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
 
 DEPENDS = "libnewt popt"
 PROVIDES += "virtual/update-alternatives"
@@ -19,7 +19,7 @@ PR = "r7"
 
 S = "${WORKDIR}/${BPN}-${BPN}-${PV}"
 
-SRC_URI = "git://github.com/fedora-sysv/chkconfig.git \
+SRC_URI = "git://github.com/fedora-sysv/chkconfig.git;branch=master;protocol=https \
            file://replace_caddr_t.patch \
           "
 
@@ -58,15 +58,15 @@ do_install() {
 }
 
 PACKAGES =+ "${PN}-alternatives ${PN}-alternatives-doc"
-SUMMARY_${PN}-alternatives = "Maintain symbolic links determining default commands"
-DESCRIPTION_${PN}-alternatives = "alternatives creates, removes, maintains and displays \
+SUMMARY:${PN}-alternatives = "Maintain symbolic links determining default commands"
+DESCRIPTION:${PN}-alternatives = "alternatives creates, removes, maintains and displays \
 information about the symbolic links comprising the alternatives system."
-SUMMARY_${PN}-alternatives-doc = "${SUMMARY_${PN}-alternatives} - Documentation files"
-DESCRIPTION_${PN}-alternatives-doc = "${DESCRIPTION_${PN}-alternatives}  \
+SUMMARY:${PN}-alternatives-doc = "${SUMMARY_${PN}-alternatives} - Documentation files"
+DESCRIPTION:${PN}-alternatives-doc = "${DESCRIPTION_${PN}-alternatives}  \
 This package contains documentation."
-RPROVIDES_${PN}-alternatives += "update-alternatives"
-RCONFLICTS_${PN}-alternatives = "update-alternatives-opkg update-alternatives-dpkg"
-FILES_${PN}-alternatives = "${sbindir}/alternatives ${sbindir}/update-alternatives \
+RPROVIDES:${PN}-alternatives += "update-alternatives"
+RCONFLICTS:${PN}-alternatives = "update-alternatives-opkg update-alternatives-dpkg"
+FILES:${PN}-alternatives = "${sbindir}/alternatives ${sbindir}/update-alternatives \
 			    ${sysconfdir}/alternatives ${localstatedir}/lib/alternatives"
-FILES_${PN}-alternatives-doc = "${mandir}/man8/alternatives.8 \
+FILES:${PN}-alternatives-doc = "${mandir}/man8/alternatives.8 \
                                 ${mandir}/man8/update-alternatives.8"

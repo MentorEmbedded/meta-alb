@@ -1,5 +1,5 @@
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/gcc-${PV}-fsl:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/gcc-${PV}-fsl:"
 
 BASEURI = "git://git.linaro.org/toolchain/gcc;protocol=https;nobranch=1"
 SRCREV = "f121e2071eccc565889dd943b3219fbb9349cfcc"
@@ -19,6 +19,6 @@ BACKPORTS += "\
            file://0001-2017-02-13-Richard-Biener-rguenther-suse.de.patch \
 "
 
-EXTRA_OECONF_BASE_append = " --enable-fix-cortex-a53-835769 --enable-fix-cortex-a53-843419 "
+EXTRA_OECONF_BASE:append = " --enable-fix-cortex-a53-835769 --enable-fix-cortex-a53-843419 "
 
 require gcc-common-fsl.inc

@@ -1,7 +1,7 @@
 SUMMARY = "Cross locale generation tool for glibc"
 HOMEPAGE = "http://www.gnu.org/software/libc/libc.html"
 SECTION = "libs"
-LICENSE = "LGPL-2.1"
+LICENSE = "LGPL-2.1-only"
 
 LIC_FILES_CHKSUM = "file://LICENSES;md5=1541fd8f5e8f1579512bf05f533371ba \
       file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
@@ -14,13 +14,13 @@ require glibc-version.inc
 #
 AUTOTOOLS_SCRIPT_PATH = "${S}/localedef"
 
-inherit native
 inherit autotools
+inherit native
 
 FILESEXTRAPATHS =. "${FILE_DIRNAME}/${PN}:${FILE_DIRNAME}/glibc:"
 
 SRC_URI = "${GLIBC_GIT_URI};branch=${SRCBRANCH};name=glibc \
-           git://github.com/kraj/localedef;branch=master;name=localedef;destsuffix=git/localedef \
+           git://github.com/kraj/localedef;branch=master;name=localedef;destsuffix=git/localedef;protocol=https \
            \
            file://0001-localedef-Add-hardlink-resolver-to-build.patch;patchdir=localedef \
            \

@@ -26,7 +26,7 @@ ITBIMAGE_FULL_NAME[vardepsexclude] = "DATETIME"
 
 do_install() {
 	# Generate the image
-	IMAGE_CMD_itb
+	IMAGE_CMD:itb
 	
 	# Install the image into /boot
 	install -d ${D}/boot
@@ -42,4 +42,4 @@ do_deploy() {
 
 addtask deploy after do_install
 PACKAGES += "${PN}-image"
-FILES_${PN}-image += "/boot"
+FILES:${PN}-image += "/boot"

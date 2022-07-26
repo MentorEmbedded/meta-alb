@@ -1,5 +1,5 @@
 SUMMARY = "Simple x11vnc Init Script"
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 SECTION = "x11"
 
@@ -17,7 +17,7 @@ inherit allarch update-rc.d systemd
 
 INITSCRIPT_NAME = "x11vnc"
 INITSCRIPT_PARAMS = "start 81 5 . stop 79 0 1 2 3 6 ."
-INITSCRIPT_PARAMS_shr = "start 91 5 . stop 89 0 1 2 3 6 ."
+INITSCRIPT_PARAMS:shr = "start 91 5 . stop 89 0 1 2 3 6 ."
 
 do_install() {
     install -d ${D}${sysconfdir}/init.d
@@ -31,14 +31,14 @@ do_install() {
     fi
 }
 
-RDEPENDS_${PN} = "x11vnc"
+RDEPENDS:${PN} = "x11vnc"
 # No need to enforce this dependency for Ubuntu
-RDEPENDS_${PN}_ubuntu = ""
+RDEPENDS:${PN}_ubuntu = ""
 
-RPROVIDES_${PN} += "${PN}-systemd"
-RREPLACES_${PN} += "${PN}-systemd"
-RCONFLICTS_${PN} += "${PN}-systemd"
-SYSTEMD_SERVICE_${PN} = "x11vnc.service"
+RPROVIDES:${PN} += "${PN}-systemd"
+RREPLACES:${PN} += "${PN}-systemd"
+RCONFLICTS:${PN} += "${PN}-systemd"
+SYSTEMD_SERVICE:${PN} = "x11vnc.service"
 
-FILES_${PN} += "${sysconfdir}/default/x11vnc"
+FILES:${PN} += "${sysconfdir}/default/x11vnc"
 

@@ -18,7 +18,7 @@ SRC_URI = "git://github.com/objectcomputing/OpenDDS.git;protocol=https;branch=${
 SRC_URI[sha256sum] = "bc51c94495fd9d9dd43f4d86405f67a7a8a646e752b104f50243c9cefaed2b6c"
 
 DEPENDS += "perl"
-RDEPENDS_${PN}-dev += "perl"
+RDEPENDS:${PN}-dev += "perl"
 
 # For the Yocto based build, we need to work around some issues with
 # the special build system of OpenDDS. We want to appear as if we
@@ -46,7 +46,7 @@ CONFIGUREOPTS += " \
 DISABLE_STATIC = ""
 DEBUG_PREFIX_MAP = ""
 
-do_configure_prepend () {
+do_configure:prepend () {
 	# NOTE: You can't configure this recipe twice with different
 	# settings without cleaning first. The build system of OpenDDS
 	# conditionally configures if it find configurations already!
@@ -65,28 +65,28 @@ write_wrapperhack () {
 	chmod +x "${CROSSWRAPPERHACK}$1"
 }
 
-do_compile_prepend () {
+do_compile:prepend () {
 	write_wrapperhack gcc
 	write_wrapperhack g++
 }
 
 
-do_install_prepend () {
+do_install:prepend () {
 	# We are only interested in the cross compiled output
 	cd "${B}/build/target"
 }
 
-do_install_append () {
+do_install:append () {
 	rm ${D}${datadir}/dds/dds/Version.h
     cp ${D}${includedir}/dds/Version.h ${D}${datadir}/dds/dds
 }
 
-FILES_${PN} = " \
+FILES:${PN} = " \
     ${libdir} \
     ${bindir} \
 "
 
-FILES_${PN}-dev += " \
+FILES:${PN}-dev += " \
     ${libdir}/cmake/OpenDDS/* \
     ${includedir} \
     ${datadir} \

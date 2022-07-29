@@ -1,7 +1,7 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/xen:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/xen:"
 
 PV = "4.14"
-URL ?= "git://source.codeaurora.org/external/autobsps32/xen;protocol=https"
+URL ?= "git://source.codeaurora.org/external/autobsps32/xen;protocol=https;branch=master"
 BRANCH ?= "${RELEASE_BASE}-${PV}"
 SRC_URI = "\
     ${URL};branch=${BRANCH} \

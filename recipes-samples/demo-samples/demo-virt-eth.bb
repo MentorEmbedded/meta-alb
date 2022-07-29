@@ -1,7 +1,7 @@
-LICENSE = "GPLv2+"
+LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://pcie_virt_eth/COPYING;md5=39bba7d2cf0ba1036f2a6e2be52fe3f0"
 
-URL ?= "git://source.codeaurora.org/external/autobsps32/alb-demos;protocol=https"
+URL ?= "git://source.codeaurora.org/external/autobsps32/alb-demos;protocol=https;branch=master"
 BRANCH ?= "${RELEASE_BASE}"
 SRC_URI = "${URL};branch=${BRANCH}"
 
@@ -15,12 +15,12 @@ do_install() {
         oe_runmake install INSTALLDIR=${DESTDIR}
 }
 
-FILES_${PN} = "${SAMPLESDIR}"
-FILES_${PN}-dbg += "${SAMPLESDIR}/.debug"
+FILES:${PN} = "${SAMPLESDIR}"
+FILES:${PN}-dbg += "${SAMPLESDIR}/.debug"
 
 DEMO_PCIE_APPS ?= "net_ep net_rc"
 
-DEMO_PCIE_APPS_ls2 = "net_rc"
-DEMO_PCIE_APPS_lx2160a = "net_rc"
+DEMO_PCIE_APPS:ls2 = "net_rc"
+DEMO_PCIE_APPS:lx2160a = "net_rc"
 
 EXTRA_OEMAKE = "samples=pcie_virt_eth apps="${DEMO_PCIE_APPS}""

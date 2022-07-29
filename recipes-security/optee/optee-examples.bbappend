@@ -6,6 +6,6 @@ EXTRA_OEMAKE += " \
                 LIBGCC_LOCATE_CFLAGS=--sysroot=${STAGING_DIR_HOST} \
                 "
 
-INSANE_SKIP_${PN} += "ldflags"
+INSANE_SKIP:${PN} += "ldflags"
 
 DEPENDS += "python3-pycryptodomex-native"

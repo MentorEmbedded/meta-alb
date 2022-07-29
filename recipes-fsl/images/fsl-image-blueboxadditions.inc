@@ -26,8 +26,8 @@ IMAGE_INSTALL += " \
 # We want easy installation of the BlueBox image to the target
 # Supported for any Layerscape Gen3 except LX2
 DEPLOYSCRIPTS ?= "bbdeployscripts"
-DEPLOYSCRIPTS_lx2160a = ""
-DEPENDS_append_fsl-lsch3 = " \
+DEPLOYSCRIPTS:lx2160a = ""
+DEPENDS:append:fsl-lsch3 = " \
     ${DEPLOYSCRIPTS} \
 "
 
@@ -110,7 +110,7 @@ IMAGE_INSTALL += " \
 
 # Supporting complex evaluation scenarios
 # NOTE: To enable opencv, you need to add the word "commercial" to
-#       the local.conf entry LICENSE_FLAGS_WHITELIST. We do not ship
+#       the local.conf entry LICENSE_FLAGS_ACCEPTED. We do not ship
 #       elements enabled with commercial requirements by default.
 #       In this specific case, "libav" is affected.
 #IMAGE_INSTALL += "opencv opencv-apps"
@@ -134,9 +134,7 @@ IMAGE_INSTALL += " \
     expect \
 "
 
-IMAGE_INSTALL_remove += " \
-	packagegroup-core-ssh-dropbear \
-"
+IMAGE_INSTALL:remove = "packagegroup-core-ssh-dropbear"
 
 #IMAGE_FEATURES += "splash qt4-pkgs package-management ssh-server-openssh"
 

@@ -3,7 +3,7 @@
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.BSD;md5=d1fe458e57ae72e9abc9aff2684690d0"
 
-URL ?= "git://source.codeaurora.org/external/autobsps32/alb-demos;protocol=https"
+URL ?= "git://source.codeaurora.org/external/autobsps32/alb-demos;protocol=https;branch=master"
 BRANCH ?= "${RELEASE_BASE}"
 SRC_URI = "${URL};branch=${BRANCH}"
 
@@ -17,8 +17,8 @@ do_install() {
         oe_runmake install INSTALLDIR=${DESTDIR}
 }
 
-FILES_${PN} = "${SAMPLESDIR}"
-FILES_${PN}-dbg += "${SAMPLESDIR}/.debug"
+FILES:${PN} = "${SAMPLESDIR}"
+FILES:${PN}-dbg += "${SAMPLESDIR}/.debug"
 
 DEPENDS += "libgpiod"
 

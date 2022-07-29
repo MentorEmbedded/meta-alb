@@ -10,7 +10,7 @@ FLASH_SCRIPT_FILE = "s32cc_qspi_write.sh"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-3-Clause;md5=550794465ba0ec5312d6919e203a55f9"
 SRC_URI = "file://${FLASH_SCRIPT_FILE}"
 
-RDEPENDS_${PN} += "gawk bash"
+RDEPENDS:${PN} += "gawk bash"
 
 do_compile() {
 	value="${@d.getVar('FLASHIMAGE_FIP_OFFSET', True)}"
@@ -29,7 +29,7 @@ do_compile() {
 	echo "export FLASHIMAGE_ROOTFS_OFFSET=${value}" >> ${FLASH_ENV_FILE}
 }
 
-do_compile_append_s32g() {
+do_compile:append:s32g() {
 	value="${@d.getVar('FLASHIMAGE_PFE_OFFSET', True)}"
 	echo "export FLASHIMAGE_PFE_OFFSET=${value}" >> ${FLASH_ENV_FILE}
 }
@@ -44,4 +44,4 @@ do_install() {
 	rm ${FLASH_ENV_FILE}
 }
 
-FILES_${PN} += "${sysconfdir}/profile.d/qspi_env.sh /opt/${FLASH_SCRIPT_FILE}"
+FILES:${PN} += "${sysconfdir}/profile.d/qspi_env.sh /opt/${FLASH_SCRIPT_FILE}"

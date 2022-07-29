@@ -9,7 +9,7 @@ DEPENDS = "libgfortran"
 
 PV = "0.2.18"
 
-SRC_URI = "git://github.com/xianyi/OpenBLAS.git \
+SRC_URI = "git://github.com/xianyi/OpenBLAS.git;branch=master;protocol=https \
     file://fixlibnameforyocto.patch \
 "
 SRCREV = "12ab1804b6ebcd38b26960d65d254314d8bc33d6"
@@ -23,10 +23,10 @@ EXTRA_OEMAKE += "OPENBLAS_LIBRARY_DIR=${libdir}"
 EXTRA_OEMAKE += "OPENBLAS_BINARY_DIR=${bindir}"
 
 # Experimental!
-EXTRA_OEMAKE_append_aarch64 = " TARGET=ARMV8"
-EXTRA_OEMAKE_append_powerpc64 = " TARGET=PPC970"
+EXTRA_OEMAKE:append:aarch64 = " TARGET=ARMV8"
+EXTRA_OEMAKE:append:powerpc64 = " TARGET=PPC970"
 
-FILES_${PN}-dev += "${libdir}/cmake/openblas"
+FILES:${PN}-dev += "${libdir}/cmake/openblas"
 
 do_install() {
         oe_runmake DESTDIR=${D} PREFIX=${prefix} install

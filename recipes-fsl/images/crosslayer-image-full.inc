@@ -22,7 +22,7 @@ require ${IMAGE_ROOTFS_REQ}.bb
 # fsl-image-networking, and the second to fix the qoriq override
 # in fsl-image-networking-full.
 IMAGE_FSTYPES += "${IMAGE_FSTYPESTEMP}"
-IMAGE_FSTYPES_qoriq += "${IMAGE_FSTYPESTEMP}"
+IMAGE_FSTYPES:qoriq += "${IMAGE_FSTYPESTEMP}"
 
 # Fix dependency deficiency in fsl-image-networking-full
 do_rootfs[depends] += "${IMAGE_ROOTFS_DEP}:do_image_complete"

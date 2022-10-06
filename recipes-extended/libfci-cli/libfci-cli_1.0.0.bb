@@ -14,11 +14,11 @@ MDIR = "${S}/sw/libfci_cli"
 
 # Workaround for makefile.
 # The makefile is unfortunately not properly prepared to be ran by YOCTO (no option to provide sysroot for toolchain).
-# Therefore, the sysroot is prepended to "CCFLAGS:all" for compiler, and to "LDFLAGS:all" for linker.
+# Therefore, the sysroot is prepended to "CCFLAGS_all" for compiler, and to "LDFLAGS_all" for linker.
 # Those symbols are recognized by the makefile and should not collide with YOCTO symbols.
-CCFLAGS:all = "--sysroot=\"${STAGING_DIR_HOST}\""
-LDFLAGS:all = "--sysroot=\"${STAGING_DIR_HOST}\""
-SYSROOT_WORKAROUND = "CCFLAGS:all=${CCFLAGS:all} LDFLAGS:all=${LDFLAGS:all}"
+CCFLAGS_all = "--sysroot=\"${STAGING_DIR_HOST}\""
+LDFLAGS_all = "--sysroot=\"${STAGING_DIR_HOST}\""
+SYSROOT_WORKAROUND = "CCFLAGS_all=${CCFLAGS_all} LDFLAGS_all=${LDFLAGS_all}"
 
 CFLAGS:prepend = "-I${S} "
 
